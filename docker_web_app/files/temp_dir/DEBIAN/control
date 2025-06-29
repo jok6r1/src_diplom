@@ -1,0 +1,7 @@
+Package: myapp
+Version: 1.0
+Section: base
+Priority: optional
+Architecture: amd64
+Maintainer: Your Name <your.email@example.com>
+Description: My Python Application

@@ -1,0 +1,13 @@
+docker build -t angular-app .
+docker run -d --name angular-container -p 4200:4200 angular-app
+
+-d: Запускает контейнер в фоновом режиме.
+--name angular-container: Имя контейнера (можно изменить).
+-p 4200:4200: Отображает порт 4200 контейнера на порт 4200 хоста.
+angular-app: Имя образа.
+
+docker logs angular-container
+
+
+sudo netstat -tulnp | grep 4200
+sudo kill -9 <PID>

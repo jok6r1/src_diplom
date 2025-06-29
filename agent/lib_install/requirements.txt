@@ -1,0 +1,20 @@
+# pip install -r lib_install/requirements.txt
+## Список зависимостей
+scapy
+psutil
+numpy
+#sudo apt update
+#sudo apt install python3-dev libpq-dev postgresql-server-dev-all
+psycopg2
+psycopg2-binary
+tensorflow
+python-dotenv
+pandas
+scikit-learn
+matplotlib
+dotenv
+socket
+time
+sqlalchemy
+scikit-optimize
+requests

@@ -1,0 +1,21 @@
+использовалась python 3.10 для tensorflow
+так как на текущий момент она принимает 3.8-3.10
+
+ALTER ROLE postgres WITH PASSWORD 'новый_пароль';
+
+sudo nano /etc/postgresql/14/main/pg_hba.conf
+
+
+CREATE USER root WITH PASSWORD '74P0GaLz';
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO root;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO root;
+GRANT ALL PRIVILEGES ON SCHEMA public TO root;
+
+
+# Экспорт в CSV
+conn = psycopg2.connect(**DB_CONFIG)
+df = pd.read_sql("SELECT * FROM traffic_with_anomalies", conn)
+df.to_csv('/home/vk/PycharmProjects/PythonProject/saved_csv/traffic_with_anomalies.csv', index=False)
+
+
+sudo systemctl restart postgresql

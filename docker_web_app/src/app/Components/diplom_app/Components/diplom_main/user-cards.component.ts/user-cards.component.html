@@ -1,0 +1,80 @@
+<div class="fullscreen-background">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Пользователи</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <button class="btn btn-outline-light btn-animated mx-2" (click)="navigateTo('/dowload')">
+              Скачать файлы
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-light btn-animated mx-2" (click)="navigateTo('/sql')">
+              SQL команды
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-light btn-animated mx-2" (click)="navigateTo('/analytics')">
+              Аналитика
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-light btn-animated mx-2" (click)="navigateTo('/settings')">
+              Настройки
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-4 content-with-header">
+
+    <div *ngIf="loading" class="text-center my-4">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Загрузка...</span>
+      </div>
+    </div>
+
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
+
+    <div *ngIf="!loading && !error" class="row row-cols-1 row-cols-md-3 g-4">
+      <div *ngFor="let user of users" class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title mb-4">{{ user.username }}</h5>
+            <p class="card-text">
+              <strong>Статус подключения:</strong>
+              <span [ngClass]="getConnectionStatus(user.id) === 'Активен' ? 'text-success' : 'text-muted'">
+                {{ getConnectionStatus(user.id) }}
+              </span>
+            </p>
+            <p class="card-text">
+              <strong>Статус:</strong>
+              <span [ngClass]="getStatusClass(getUserStatus(user.id))">
+                {{ getUserStatus(user.id) }}
+              </span>
+            </p>
+            <button class="btn btn-primary" (click)="goToUserTraffic(user.id)">
+              Просмотреть трафик
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

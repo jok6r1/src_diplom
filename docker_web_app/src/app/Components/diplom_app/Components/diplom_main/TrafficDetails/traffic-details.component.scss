@@ -1,0 +1,114 @@
+/* Существующие стили */
+.fullscreen-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(rgba(255,255,255,0.60), rgba(255,255,255,0.1)), url('/assets/images/eagle_computer.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1;
+}
+
+.scrollable-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.dashboard-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: filter 0.3s ease; /* Плавный переход для blur */
+}
+
+.dashboard-container.blurred {
+  filter: blur(3px); /* Эффект размытия */
+}
+
+.threat-indicator, .anomalies, .chart-container {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.anomalies {
+  background-color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.threat-indicator {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 2px solid black;
+}
+
+.chart-container {
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.block-container {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 2px solid black;
+}
+
+canvas {
+  width: 100% !important;
+  max-width: 600px;
+  height: 300px !important;
+  background: transparent !important;
+  display: block;
+  margin: 0 auto;
+}
+
+.traffic-light {
+  display: flex;
+  gap: 5px;
+}
+
+.dot-green { color: green; }
+.dot-yellow { color: yellow; }
+.dot-red { color: red; }
+
+.chart-title {
+  text-align: center;
+  margin-bottom: 10px;
+  cursor: pointer; /* Указывает, что элемент кликабелен */
+}
+
+/* Стили для модального окна */
+::ng-deep .tooltip-modal .mat-dialog-container {
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}

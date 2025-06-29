@@ -1,0 +1,104 @@
+<div class="fullscreen-background">
+  <div class="scrollable-content">
+    <div class="dashboard-container container">
+      <div *ngIf="!loading && !error && !timeRangeLoading; else loadingOrError">
+        <div class="situational-dashboard">
+          <div class="text-center mb-4">
+            <button class="btn btn-secondary" (click)="goBack()">Назад</button>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <div class="block-container threat-indicator" *ngIf="selectedData">
+                <h3>Индикатор угроз</h3>
+                <p>
+                  Статус: {{ getStatusText(selectedData.anomalies) }}
+                  <span [ngClass]="{
+                    'dot-green': getStatusText(selectedData.anomalies) === 'Норма',
+                    'dot-red': getStatusText(selectedData.anomalies) === 'Опасность'
+                  }">●</span>
+                </p>
+                <p>Аномалий: {{ getAnomalyCount() }}/{{ last15MinData.length }} событий</p>
+                <p>Последнее событие: {{ selectedData.timestamp | date:'yyyy-MM-dd HH:mm:ss' }}</p>
+                <p>IP: {{ selectedData.ip }}</p>
+                <div class="mt-3">
+                  <label for="timeRange">Диапазон времени (мин): {{ timeRange }}</label>
+                  <input
+                    type="range"
+                    id="timeRange"
+                    min="5"
+                    max="60"
+                    step="5"
+                    [value]="timeRange"
+                    (input)="onTimeRangeChange($event)"
+                    class="form-range w-75"
+                  />
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+              <div class="block-container anomalies">
+                <h5 class="chart-title"  (click)="openTooltipModal('anomaly')">Детектирование аномалий (последние {{ timeRange }} мин)</h5>
+                <canvas #anomalyChartCanvas class="w-100"></canvas>
+                <div class="traffic-light mt-2">
+                  <span *ngFor="let d of last15MinData.slice(0, 14)" [ngClass]="{
+                    'dot-green': getStatusText(d.anomalies) === 'Норма',
+                    'dot-red': getStatusText(d.anomalies) === 'Опасность'
+                  }"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <div class="block-container iat-chart">
+                <h4 class="chart-title" (click)="openTooltipModal('iat')">
+                  Normal Min Packet Transmission
+                </h4>
+                <canvas #iatChartCanvas class="w-100"></canvas>
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+              <div class="block-container fwd-bck-chart">
+                <h4 class="chart-title" (click)="openTooltipModal('stacked')">Avg Packet size</h4>
+                <canvas #stackedChartCanvas class="w-100"></canvas>
+              </div>
+            </div>
+
+            <!--<div class="col-md-6 mb-4">
+              <div class="block-container fwd-bck-chart">
+                <h4 class="chart-title" (click)="openTooltipModal('packetCount')">Packet Count</h4>
+                <canvas #packetCountChartCanvas class="w-100"></canvas>
+              </div>
+            </div>
+          -->
+            
+            <!--<div class="col-md-6 mb-4">
+              <div class="block-container fwd-bck-chart">
+                <h4 class="chart-title" (click)="openTooltipModal('packetRate')">Packet Rate</h4>
+                <canvas #packetRateChartCanvas class="w-100"></canvas>
+              </div>
+            </div>
+          -->
+          </div>
+        </div>
+      </div>
+      
+      <ng-template #loadingOrError>
+        <div *ngIf="loading || timeRangeLoading" class="text-center my-4">
+          <mat-spinner diameter="40"></mat-spinner>
+          <p>{{ timeRangeLoading ? 'Обновление данных...' : 'Загрузка данных...' }}</p>
+        </div>
+        <div *ngIf="error && !loading && !timeRangeLoading" class="alert alert-danger d-flex align-items-center justify-content-between">
+          <div>
+            <mat-icon class="me-2">error_outline</mat-icon>
+            {{ error }}
+          </div>
+          <button mat-button color="warn" (click)="retryLoad()">Повторить</button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

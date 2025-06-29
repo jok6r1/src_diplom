@@ -1,0 +1,129 @@
+<div class="fullscreen-background"></div>
+
+<div class="content-layer">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Мониторинг трафика</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <button class="btn btn-outline-light btn-animated mx-2" (click)="navigateTo('/dowload')">
+              Скачать файлы
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-light btn-animated mx-2" (click)="navigateTo('/sql')">
+              SQL команды
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-light btn-animated mx-2" (click)="navigateTo('/analytics')">
+              Аналитика
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-light btn-animated mx-2" (click)="navigateTo('/settings')">
+              Настройки
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container pt-5 mt-5">
+    <div *ngIf="loading || error">
+      <div *ngIf="loading" class="text-center my-4">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p>Загрузка...</p>
+      </div>
+      <div *ngIf="error" class="alert alert-danger d-flex align-items-center justify-content-between">
+        <div>
+          <mat-icon class="me-2">error_outline</mat-icon>
+          {{ error }}
+        </div>
+        <button mat-button color="warn" (click)="startPolling()">Повторить</button>
+      </div>
+    </div>
+
+    <div *ngIf="!loading && !error" class="row">
+      <div class="col">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">Мониторинг трафика</h2>
+            <div class="controls mb-4 d-flex flex-wrap align-items-center gap-3">
+              <button
+                mat-button
+                [color]="showActiveOnly ? 'primary' : ''"
+                (click)="toggleActiveFilter()"
+              >
+                {{ showActiveOnly ? 'Показать все за час' : 'Сортировка' }}
+              </button>
+              <div *ngIf="showActiveOnly" class="d-flex align-items-center gap-2">
+                <label for="timeRange" class="time-range-label">Диапазон времени (мин): {{ timeRange }}</label>
+                <input
+                  type="range"
+                  id="timeRange"
+                  min="5"
+                  max="60"
+                  step="5"
+                  [value]="timeRange"
+                  (input)="onTimeRangeChange($event)"
+                  class="form-range"
+                  style="width: 200px;"
+                />
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col" (click)="sortTable('timestamp')" style="cursor: pointer;">
+                      Время {{ sortColumn === 'timestamp' ? (sortDirection === 'asc' ? '↑' : '↓') : '' }}
+                    </th>
+                    <th scope="col" (click)="sortTable('ip')" style="cursor: pointer;">
+                      IP адрес {{ sortColumn === 'ip' ? (sortDirection === 'asc' ? '↑' : '↓') : '' }}
+                    </th>
+                    <th scope="col" (click)="sortTable('status')" style="cursor: pointer;">
+                      Статус {{ sortColumn === 'status' ? (sortDirection === 'asc' ? '↑' : '↓') : '' }}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="let item of filteredTrafficData"
+                    style="cursor: pointer;"
+                    (click)="selectRow(item)"
+                    [ngClass]="getStatusClass(item)"
+                  >
+                    <td>{{ item.timestamp | date:'HH:mm:ss' }}</td>
+                    <td>
+                      <span class="ip-link text-primary" style="cursor: pointer;">
+                        {{ item.ip }}
+                      </span>
+                    </td>
+                    <td>{{ getStatusText(item) }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div *ngIf="!filteredTrafficData.length" class="alert alert-info text-center">
+              Нет данных за последний час
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

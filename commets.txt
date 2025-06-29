@@ -1,0 +1,15 @@
+#закрыть grafana 
+
+systemctl list-units --all | grep -i grafana
+sudo systemctl stop grafana-server
+sudo systemctl disable grafana-server
+
+#--------------------------------------------------#
+
+# Stop and remove existing containers
+# Build images without cache
+# Start services in detached mode
+
+docker-compose down
+docker-compose build --no-cache
+docker-compose up -d

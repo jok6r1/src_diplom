@@ -1,0 +1,596 @@
+:host {
+  //display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #fff;
+
+  // для полета орла
+  display: block;
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+  background-color: #F2DFB5;
+}
+
+.flip-container {
+  perspective: 1000px;
+  position: relative;
+  width: 400px;
+  height: 500px;
+  z-index: 5;
+}
+
+.flip-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1.0s ease-in-out;
+}
+
+.flip-front,
+.flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.flip-front {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  overflow: hidden; 
+}
+
+.flip-card.flipped {
+  transform: rotateY(180deg);
+}
+
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transform-style: preserve-3d;
+    z-index: -1;
+  }
+  
+  /* Остальные стили остаются такими же */
+  .register-form h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 28px;
+    font-weight: 600;
+  }
+  
+  
+  .form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    background: #f9f9f9;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group input:not(:placeholder-shown) {
+    border-color: #6e8efb;
+    background: #fff;
+  }
+  
+  .submit-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    background: #6e8efb;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background: #5a76e0;
+  }
+  
+  .login-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #777;
+    font-size: 14px;
+  }
+  
+  .link-button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #6e8efb;
+    text-decoration: none;
+    font-size: inherit;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .link-button:hover {
+    color: #5a76e0;
+  }
+
+
+   .eagle-gif {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill; /* Заменяем cover на fill */
+    border-radius: 15px;
+    z-index: 1;
+    transition: opacity 1.4s ease-in;
+    will-change: opacity;
+    opacity: 0; /* Начальное состояние для анимации */
+    object-fit: fill;
+    pointer-events: none;
+  }
+  
+  .eagle-gif.visible {
+    opacity: 0.5; /* Появление при showGif === true */
+  }
+  
+  .eagle-gif.visible:hover {
+    opacity: 0.5;
+  }
+
+  .gif-container {
+    position: relative;
+    width: 100%;
+    height: 35vh;
+    overflow: visible; /* Позволяет GIF быть видимым за пределами контейнера */
+  }
+  
+  .animated-gif {
+    position: fixed;
+    width: 25vw;
+    height: 30vh;
+    top: 0; /* Начальная позиция */
+    left: 0; /* Начальная позиция */
+    animation: moveRightUp 6s ease-out infinite;
+    z-index: 1;
+  }
+  
+
+  .moveLeftUp {
+    animation: moveLeftUp 8s linear infinite;
+  }
+  
+  .moveLeftDown {
+    animation: moveLeftDown 8s linear infinite;
+  }
+  
+  .moveRightUp {
+    animation: moveRightUp 8s linear infinite;
+  }
+  
+  .moveRightDown {
+    animation: moveRightDown 8s linear infinite;
+  }
+
+  .moveAcrossAtLeftToRight {
+    animation: moveAcrossAtLeftToRight 8s linear infinite;
+  }
+
+  .moveAcrossAtRighToLeft {
+    animation: moveAcrossAtRighToLeft 8s linear infinite;
+  }
+
+@keyframes moveLeftUp {
+        0% {
+          top: 20vh;
+          left: -20vw;
+          transform: rotate(-15deg) scale(1);
+        }
+        20% {
+          top: 15vh;
+          left: 5vw;
+          transform: rotate(-20deg) scale(1.1); /* Лёгкий взмах крыльев */
+        }
+        40% {
+          top: 10vh;
+          left: 20vw;
+          transform: rotate(-25deg) scale(1.2); /* Подъём с увеличением */
+        }
+        60% {
+          top: 0vh;
+          left: 35vw;
+          transform: rotate(-30deg) scale(1.3); /* Пик высоты */
+        }
+        80% {
+          top: -10vh;
+          left: 45vw;
+          transform: rotate(-35deg) scale(1.4); /* Плавное снижение */
+        }
+        100% {
+          top: -20vh;
+          left: 50vw;
+          transform: rotate(-40deg) scale(1.5); /* Завершение полёта */
+        }
+  }
+
+@keyframes moveLeftDown {
+        0% {
+          top: 40vh;
+          left: -20vw;
+          transform: rotate(20deg) scale(1);
+        }
+        20% {
+          top: 50vh;
+          left: 0vw;
+          transform: rotate(25deg) scale(1.1); /* Лёгкий взмах */
+        }
+        40% {
+          top: 70vh;
+          left: 15vw;
+          transform: rotate(30deg) scale(1.2); /* Подъём перед спуском */
+        }
+        60% {
+          top: 90vh;
+          left: 25vw;
+          transform: rotate(35deg) scale(1.3); /* Пик спуска */
+        }
+        80% {
+          top: 110vh;
+          left: 35vw;
+          transform: rotate(45deg) scale(1.4); /* Плавное снижение */
+        }
+        100% {
+          top: 130vh;
+          left: 40vw;
+          transform: rotate(55deg) scale(1.5); /* Завершение */
+        }
+}
+
+
+@keyframes moveRightUp {
+  0% {
+      top: 30vh;
+      left: 100vw; /* Уменьшил с 120vw для видимости */
+      transform: rotate(20deg) rotateY(180deg) scale(1);
+    }
+    20% {
+      top: 25vh;
+      left: 85vw;
+      transform: rotate(25deg) rotateY(180deg) scale(1.1);
+    }
+    40% {
+      top: 20vh;
+      left: 75vw;
+      transform: rotate(30deg) rotateY(180deg) scale(1.2);
+    }
+    60% {
+      top: 10vh;
+      left: 65vw;
+      transform: rotate(35deg) rotateY(180deg) scale(1.3);
+    }
+    80% {
+      top: -5vh;
+      left: 60vw;
+      transform: rotate(45deg) rotateY(180deg) scale(1.4);
+    }
+    100% {
+      top: -20vh;
+      left: 55vw;
+      transform: rotate(55deg) rotateY(180deg) scale(1.5);
+    }
+  }
+
+@keyframes moveRightDown {
+  0% {
+    top: 20vh;
+    left: 100vw; /* Уменьшил с 120vw */
+    transform: rotate(-35deg) rotateY(180deg) scale(1);
+  }
+  20% {
+    top: 30vh;
+    left: 85vw;
+    transform: rotate(-40deg) rotateY(180deg) scale(1.1);
+  }
+  40% {
+    top: 50vh;
+    left: 75vw;
+    transform: rotate(-45deg) rotateY(180deg) scale(1.2);
+  }
+  60% {
+    top: 70vh;
+    left: 65vw;
+    transform: rotate(-50deg) rotateY(180deg) scale(1.3);
+  }
+  80% {
+    top: 90vh;
+    left: 55vw;
+    transform: rotate(-55deg) rotateY(180deg) scale(1.4);
+  }
+  100% {
+    top: 110vh;
+    left: 50vw;
+    transform: rotate(-55deg) rotateY(180deg) scale(1.5);
+  }
+}
+
+@keyframes moveAcrossAtLeftToRight {
+  0% {
+    left: -20vw; /* Старт за левым краем, используем ширину GIF */
+  }
+  100% {
+    left: 100vw; /* Финиш за правым краем */
+  }
+}
+
+@keyframes moveAcrossAtRighToLeft {
+  0% {
+    left: 120vw; /* Старт за левым краем, используем ширину GIF */
+    transform: rotateY(180deg) scale(1);
+  }
+  50% {
+    left: 60vw; /* Старт за левым краем, используем ширину GIF */
+    transform: rotateY(180deg) scale(1.4);
+  }
+  100% {
+    left: -20vw; /* Финиш за правым краем */
+    transform: rotateY(180deg) scale(1);
+  }
+}
+
+
+
+/* Общие стили */
+.flip-container {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  left: 0;
+}
+
+.flip-front {
+  &-front {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  &-back {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.form-group {
+  position: relative;
+  width: 100%;
+}
+
+.register-form {
+  width: 70%;
+}
+
+/* Медиа-запросы */
+@media screen and (min-width: 1921px) and (max-width: 2560px) {
+  .flip-container {
+    max-width: 800px;
+    width: 50vw;
+    height: 65vh;
+  }
+  .text-adaptive {
+    &-header {
+      font-size: calc(1.8rem + 1.8vw);
+      margin-bottom: 10%;
+      color: black;
+      font-weight: bold;
+    }
+    & {
+      font-size: calc(1.0em + 0.5vw);
+    }
+  }
+  .form-group {
+    margin-bottom: 5%;
+  }
+}
+
+@media screen and (min-width: 1641px) and (max-width: 1920px) {
+  .flip-container {
+    max-width: 800px;
+    width: 50vw;
+    height: 65vh;
+  }
+  .text-adaptive {
+    &-header {
+      font-size: calc(1.5em + 0.8vw);
+      margin-bottom: 10%;
+      color: black;
+      font-weight: bold;
+    }
+    &{ 
+      font-size: calc(1.0em + 0.5vw);
+    }
+  }
+  .form-group {
+    margin-bottom: 3%;
+  }
+}
+
+@media screen and (min-width: 1081px) and (max-width: 1640px) {
+  .flip-container {
+    max-width: 700px;
+    width: 60vw;
+    height: 75vh;
+  }
+  .text-adaptive {
+    &-header {
+      font-size: calc(1.8em + 0.8vw);
+      margin-bottom: 10%;
+      color: black;
+      font-weight: bold;
+    }
+    & {
+      font-size: calc(0.8em + 0.8vw);
+    }
+  }
+  .form-group {
+    margin-bottom: 5%;
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 1080px) {
+  .flip-container {
+    max-width: 600px;
+    width: 60vw;
+    height: 75vh;
+  }
+  .text-adaptive {
+    &-header {
+      font-size: calc(1.2em + 0.8vw);
+      margin-bottom: 10%;
+      color: black;
+      font-weight: bold;
+    }
+    & {
+      font-size: calc(0.7em + 0.8vw);
+    }
+  }
+  .form-group {
+    margin-bottom: 5%;
+  }
+}
+
+@media screen and (min-width: 641px) and (max-width: 800px) {
+  .flip-container {
+    max-width: 600px;
+    width: 75vw;
+    height: 55vh;
+  }
+  .text-adaptive {
+    &-header {
+      font-size: calc(0.9em + 0.8vw);
+      margin-bottom: 5%;
+      color: black;
+      font-weight: bold;
+    }
+    & {
+      font-size: calc(0.7em + 0.8vw);
+    }
+  }
+  .form-group {
+    margin-bottom: 5%;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 640px) {
+  .flip-container {
+    max-width: 400px;
+    width: 75vw;
+    height: 65vh;
+  }
+  .text-adaptive {
+    &-header {
+      font-size: calc(1.2em + 0.8vw);
+      margin-bottom: 10%;
+      color: black;
+      font-weight: bold;
+    }
+    & {
+      font-size: calc(0.4em + 0.8vw);
+    }
+  }
+  .form-group {
+    margin-bottom: 5%;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .flip-container {
+    max-width: 400px;
+    width: 75vw;
+    height: 55vh;
+  }
+  .text-adaptive {
+    &-header {
+      font-size: calc(1.2em + 0.5vh);
+      margin-bottom: 10%;
+      color: black;
+      font-weight: bold;
+    }
+    & {
+      font-size: calc(0.5em + 0.5vh);
+    }
+  }
+  .form-group {
+    margin-bottom: 5%;
+  }
+}
+
+
+
+
+
+
+.animate-element {
+  transition: transform 3s ease-in-out; // Анимация за 3 секунды
+}
+
+// Анимация при добавлении класса .animate
+.flip-back.animate .animate-element:nth-child(1) {
+  transform: translateY(-100vh); // Заголовок уезжает вверх
+}
+
+.flip-back.animate .animate-element:nth-child(2) {
+  transform: translateX(100vw); // Поле имени уезжает вправо
+}
+
+.flip-back.animate .animate-element:nth-child(3) {
+  transform: translateX(-100vw); // Поле email уезжает влево
+}
+
+.flip-back.animate .animate-element:nth-child(4) {
+  transform: translateX(100vw); // Поле пароля уезжает вправо
+}
+
+.flip-back.animate .animate-element:nth-child(5) {
+  transform: translateX(-100vw); // Кнопка "Зарегистрироваться" уезжает влево
+}
+
+.flip-back.animate .animate-element:nth-child(6) {
+  transform: translateY(100vh); // Текст с кнопкой "Войти" уезжает вправо
+}
+
+.center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: #333;
+}

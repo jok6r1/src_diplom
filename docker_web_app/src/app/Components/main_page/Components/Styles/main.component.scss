@@ -1,0 +1,27 @@
+.main-block {
+    min-width: 320px; 
+  }
+  
+  .secondary-block { 
+    display: none;
+  }
+
+  @media (max-width: 319px) {
+    .main-block{
+      display: none;
+    }
+    .secondary-block{
+      display: block;
+      font-size: 5vw;
+    }
+  }
+
+  @media (min-width: 2561px) {
+    .main-block{
+      display: none;
+    }
+    .secondary-block{
+      display: block;
+      font-size: 5vw;
+    }
+  }

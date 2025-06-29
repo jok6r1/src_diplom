@@ -1,0 +1,130 @@
+.fullscreen-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(rgba(255,255,255,0.60), rgba(255,255,255,0.1)), url('/assets/images/eagle_computer.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1;
+}
+
+.navbar {
+  background: linear-gradient(90deg, rgba(44, 62, 80, 0.65), rgba(52, 73, 94, 0.57));
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff !important;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #1258c0 !important;
+  }
+}
+
+.btn-animated {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+  }
+
+  &:hover::after {
+    width: 200px;
+    height: 200px;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.navbar-toggler {
+  border: none;
+  transition: transform 0.3s ease;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &[aria-expanded="true"] {
+    transform: rotate(90deg);
+  }
+}
+
+.navbar-collapse {
+  transition: all 0.3s ease;
+}
+
+.content-with-header {
+  padding-top: 80px; /* Adjust based on navbar height */
+}
+
+.card {
+  transition: transform 0.2s;
+  border: 2px solid;
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.text-success {
+  color: #28a745;
+}
+
+.text-warning {
+  color: #ffc107;
+}
+
+.text-danger {
+  color: #dc3545;
+}
+
+.text-muted {
+  color: #6c757d;
+}
+
+@media (max-width: 991px) {
+  .navbar-nav {
+    padding: 1rem;
+    background: rgba(44, 62, 80, 0.6);
+    border-radius: 5px;
+    margin-top: 0.5rem;
+
+    .nav-item {
+      margin: 0.5rem 0;
+
+      .btn-animated {
+        width: 100%;
+        margin: 0;
+      }
+    }
+  }
+}

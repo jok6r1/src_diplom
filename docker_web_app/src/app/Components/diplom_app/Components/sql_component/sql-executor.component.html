@@ -1,0 +1,67 @@
+<div class="sql-executor">
+  <!-- Статус подключения -->
+  <div class="connection-status" 
+       [class.connected]="isConnected" 
+       [class.disconnected]="!isConnected">
+    Статус базы: {{ isConnected ? 'Подключено' : 'Не подключено' }}
+  </div>
+
+  <!-- Кнопка предопределенных запросов -->
+  <div class="predefined-queries">
+      <button type="button" 
+              class="toggle-queries-btn"
+              (click)="togglePredefinedQueries()">
+          Предопределенные запросы ▼
+      </button>
+      
+      <!-- Выпадающий список -->
+      <div *ngIf="showPredefinedQueries" class="queries-dropdown">
+          <button type="button" 
+                  *ngFor="let query of predefinedQueries | keyvalue"
+                  (click)="executePredefinedQuery(query.value)">
+              {{ query.key }}
+          </button>
+      </div>
+  </div>
+
+  <!-- Форма для SQL-запроса -->
+  <form [formGroup]="sqlForm" (ngSubmit)="onSubmit()">
+      <textarea 
+          formControlName="sqlQuery" 
+          placeholder="Введите SQL-запрос..."
+          rows="5"
+      ></textarea>
+      <button type="submit" [disabled]="loading">Выполнить</button>
+  </form>
+
+  <!-- Отображение ошибки -->
+  <div *ngIf="error" class="error">
+      {{ error }}
+  </div>
+
+  <!-- Отображение сообщения об успехе -->
+  <div *ngIf="resultMessage" class="result-message">
+      {{ resultMessage }}
+  </div>
+
+  <!-- Отображение таблицы -->
+  <div *ngIf="tableData.length > 0" class="table-container">
+      <table>
+          <thead>
+              <tr>
+                  <th *ngFor="let column of tableColumns">{{ column }}</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let row of tableData">
+                  <td *ngFor="let column of tableColumns">{{ row[column] }}</td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+
+  <!-- Сообщение о пустых данных -->
+  <div *ngIf="tableData.length === 0 && !error && !resultMessage && !loading">
+      Нет данных для отображения.
+  </div>
+</div>

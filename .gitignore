@@ -1,0 +1,13 @@
+test_docker_app_2/
+
+node_modules/
+
+.venv
+
+notebooks/
+
+lib/
+
+comments.txt
+
+**/myapp.deb

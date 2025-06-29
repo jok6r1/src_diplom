@@ -1,0 +1,342 @@
+.header-wrapper {
+    min-height: 15vh;
+    width: 100%;
+    transition: max-height 0.5s ease-in-out;
+}
+.header-title{
+  margin-left: 1.5vw;
+}
+.navbar-toggler{
+  border-color: white !important;
+  padding: 0 !important;
+}
+
+.adaptive-icon {
+  width: 8vh;
+  height: 8vh;
+  object-fit: contain;
+}
+
+.text-adaptive {
+  font-size: calc(0.5rem + 0.5vw); 
+  line-height: 1.5;
+  &-header {
+    font-size: calc(1.2rem + 1.2vw);   
+  }
+}
+#navbarNav{
+  min-height: 15vh;
+  max-height: 30vh;
+  color: black;
+  
+}
+
+@media (min-width: 1921px) and (max-width: 2560px) { 
+  .text-adaptive {
+    font-size: calc(0.5rem + 0.5vw); 
+     &-header {
+      font-size: calc(1.2rem + 1.2vw);   
+    }
+  }
+  .header-wrapper {
+    min-height: 10vh; 
+    transition: height 0.3s ease;
+  }
+  .navbar-toggler{
+    width: 4vw !important;
+    height: 7vh !important;
+    object-fit: contain;
+  }
+  .button-icon-style {
+    width: 3vw;
+    height: 7vh;
+    object-fit: contain;
+  }
+  @media(max-height: 1200px){
+    .navbar-toggler{
+      width: 3.5vw !important;
+      height: 6.5vh !important;
+    }
+    .button-icon-style{
+      width: 2.5vw;
+      height: 6.5vh;
+    }
+  }
+  @media(max-height: 1020px){
+    .navbar-toggler{
+      width: 3.5vw !important;
+      height: 7vh !important;
+    }
+    .button-icon-style{
+      width: 2.5vw;
+      height: 8vh;
+    }
+  }
+}
+
+@media (min-width: 1281px) and (max-width: 1920px) { 
+  .text-adaptive {
+    font-size: calc(0.5rem + 0.5vw); 
+     &-header {
+      font-size: calc(1.2rem + 1.2vw);   
+    }
+  }
+  .header-wrapper {
+    min-height: 10vh; 
+    transition: height 0.3s ease;
+  }
+  .navbar-toggler{
+    width: 4vw !important;
+    height: 6vh !important;
+    object-fit: contain;
+  }
+  .button-icon-style {
+    width: 3vw;
+    height: 6vh;
+    object-fit: contain;
+  }
+  @media(max-height: 800px){
+    .navbar-toggler{
+      width: 4vw !important;
+      height: 8vh !important;
+    }
+    .button-icon-style{
+      width: 3vw;
+       height: 8vh;
+    }
+  }
+  @media(max-height: 650px){
+    .navbar-toggler{
+      width: 4vw !important;
+      height: 8vh !important;
+    }
+    .button-icon-style{
+      width: 3vw;
+      height: 8vh;
+    }
+  }
+}
+
+@media (min-width: 981px) and (max-width: 1280px) { 
+  .text-adaptive {
+    font-size: calc(0.5rem + 0.5vw); 
+     &-header {
+      font-size: calc(1.2rem + 1.2vw);   
+    }
+  }
+  .header-wrapper {
+    min-height: 10vh; 
+    transition: height 0.3s ease;
+  }
+  .navbar-toggler{
+    width: 6vw !important;
+    height: 6vh !important;
+    object-fit: contain;
+  }
+  .button-icon-style {
+    width: 4vw;
+    height: 6vh;
+    object-fit: contain;
+  }
+  @media(max-height: 800px){
+    .navbar-toggler{
+      width: 5vw !important;
+      height: 7vh !important;
+    }
+    .button-icon-style{
+      width: 4vw;
+      height: 7vh;
+    }
+  }
+  @media(max-height: 650px){
+    .navbar-toggler{
+      width: 5vw !important;
+      height: 8vh !important;
+    }
+    .button-icon-style{
+      width: 4vw;
+      height: 8vh;
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 980px) { 
+  .text-adaptive {
+    font-size: calc(0.5rem + 0.5vw);
+    &-header {
+      font-size: calc(1.2rem + 1.2vw);     
+    } 
+  }
+  .header-wrapper {
+    min-height: 10vh; 
+    transition: height 0.3s ease;
+  }
+  .navbar-toggler{
+    width: 10vw !important;
+    height: 6vh !important;
+    object-fit: contain;
+  }
+  .button-icon-style {
+    width: 5vw;
+    height: 6vh;
+    object-fit: contain;
+  }
+  @media(max-height: 800px){
+    .navbar-toggler{
+      width: 6vw !important;
+      height: 6vh !important;
+    }
+    .button-icon-style{
+      width: 4vw;
+      height: 6vh;
+    }
+  }
+  @media(max-height: 600px){
+    .navbar-toggler{
+      width: 6vw !important;
+      height: 8vh !important;
+    }
+    .button-icon-style{
+      width: 5vw;
+      height: 8vh;
+    }
+  }
+}
+
+@media (min-width: 425px) and (max-width: 768px) { 
+  .text-adaptive {
+    font-size: calc(0.5rem + 0.5vw);
+    &-header {
+      font-size: calc(1.2rem + 1.2vw);    
+    } 
+  }
+  .header-wrapper {
+    min-height: 10vh; 
+    transition: height 0.3s ease;
+  }
+  .navbar-toggler-icon{
+    width: 1.0em;
+    height: 1.0em
+  }
+  #navbarNav{
+    min-height: 15vh;
+    max-height: 30vh;
+    color: black;
+  }
+  .navbar-toggler{
+      width: 12vw !important;
+      height: 6vh !important;
+    }
+  .button-icon-style{
+      width: 7vw;
+      height: 6vh;
+  }
+  .adaptive-icon {
+    width: 7vh;
+    height: 7vh;
+    object-fit: contain;
+  }
+  
+  @media(max-height: 650px){
+    .navbar-toggler{
+      width: 10vw !important;
+      height: 6vh !important;
+    }
+    .button-icon-style{
+      width: 6vw;
+      height: 6vh;
+    }
+  }
+}
+
+@media (min-width: 376px) and (max-width: 424px) { 
+    .text-adaptive {
+      font-size: calc(0.5rem + 0.5vw);
+      &-header {
+        font-size: calc(1.2rem + 1.2vw);    
+      } 
+    }
+    .header-wrapper {
+      min-height: 10vh; 
+      transition: height 0.3s ease;
+    }
+    .navbar-toggler-icon{
+      width: 1.0em;
+      height: 1.0em
+    }
+    #navbarNav{
+      min-height: 15vh;
+      max-height: 30vh;
+      color: black;
+    }
+    .navbar-toggler{
+        width: 12vw !important;
+        height: 6vh !important;
+      }
+    .button-icon-style{
+        width: 7vw;
+        height: 6vh;
+    }
+    .adaptive-icon {
+      width: 7vh;
+      height: 7vh;
+      object-fit: contain;
+    }
+    
+    @media(max-height: 650px){
+      .navbar-toggler{
+        width: 10vw !important;
+        height: 6vh !important;
+      }
+      .button-icon-style{
+        width: 6vw;
+        height: 6vh;
+      }
+    }
+}
+
+@media (min-width: 320px) and (max-width: 375px) { 
+    .text-adaptive {
+      font-size: calc(0.8rem + 0.8vw);
+      &-header {
+        font-size: calc(1.2rem + 1.2vw);    
+      } 
+    }
+    .header-wrapper {
+      min-height: 10vh; 
+      transition: height 0.3s ease;
+    }
+    .navbar-toggler-icon{
+      width: 1.0em;
+      height: 1.0em
+    }
+    #navbarNav{
+      min-height: 15vh;
+      max-height: 30vh;
+      color: black;
+    }
+    .navbar-toggler{
+        width: 10vw !important;
+        height: 5vh !important;
+      }
+    .button-icon-style{
+        width: 6vw;
+        height: 5vh;
+    }
+    .adaptive-icon {
+      width: 7vh;
+      height: 7vh;
+      object-fit: contain;
+    }
+
+    @media(max-height: 650px){
+      .navbar-toggler{
+        width: 10vw !important;
+        height: 6vh !important;
+      }
+      .button-icon-style{
+        width: 6vw;
+        height: 6vh;
+      }
+    }
+}

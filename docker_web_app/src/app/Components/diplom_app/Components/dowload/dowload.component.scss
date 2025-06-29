@@ -1,0 +1,51 @@
+.download-page {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  .download-card {
+    width: 100%;
+    max-width: 800px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 25px;
+  }
+  h2 {
+    margin-top: 0;
+    color: #333;
+  }
+  .file-list-container {
+    margin: 20px 0;
+  }
+  .download-status {
+    margin-top: 20px;
+  }
+  .progress-container {
+    height: 20px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .progress-bar {
+    height: 100%;
+    background: #4CAF50;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
+    transition: width 0.3s;
+  }
+  .error {
+    color: #f44336;
+    padding: 10px;
+    background: #ffebee;
+    border-radius: 4px;
+  }
+  .success {
+    color: #4CAF50;
+    padding: 10px;
+    background: #e8f5e9;
+    border-radius: 4px;
+  }

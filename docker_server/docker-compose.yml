@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  express-typescript-docker:
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=postgres
+      - DB_USER=postgres
+      - DB_NAME=myapp
+      - DB_PASSWORD=74P0GaLz
+      - DB_PORT=5432
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./:/usr/src/app
+    container_name: express-typescript-docker
+    expose:
+      - '3000'
+    ports:
+      - '3000:3000'
+    command: npm run dev
+    depends_on:
+      - postgres
+    networks:
+      - my-app-network
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: 74P0GaLz
+      POSTGRES_USER: postgres
+      POSTGRES_DB: myapp
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    container_name: postgres
+    networks:
+      - my-app-network
+
+networks:
+  my-app-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
